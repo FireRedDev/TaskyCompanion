@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="241.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.timemanagerapp.EditCustomerController">
+   <children>
+      <Label layoutX="17.0" layoutY="71.0" text="Name" AnchorPane.leftAnchor="30.0" />
+      <Label layoutX="20.0" layoutY="117.0" text="E-Mail" AnchorPane.leftAnchor="30.0" />
+      <Label layoutX="29.0" layoutY="159.0" text="Telefonnummer" AnchorPane.leftAnchor="30.0" />
+      <Label layoutX="112.0" layoutY="27.0" text="Kunden bearbeiten" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="127.0" layoutY="71.0" prefHeight="25.0" prefWidth="200.0" promptText="Aktueller Name" AnchorPane.rightAnchor="30.0" />
+      <Button layoutX="87.0" layoutY="202.0" mnemonicParsing="false" onAction="#backToMainScreen" text="Zurück" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="87.0" />
+      <Button layoutX="207.0" layoutY="202.0" mnemonicParsing="false" text="Speichern" AnchorPane.bottomAnchor="20.0" />
+      <TextField layoutX="127.0" layoutY="113.0" prefHeight="25.0" prefWidth="200.0" promptText="Aktuelle E-Mail" AnchorPane.rightAnchor="30.0" />
+      <TextField layoutX="127.0" layoutY="155.0" prefHeight="25.0" prefWidth="200.0" promptText="Aktuelle Telefonnummer" AnchorPane.rightAnchor="30.0" />
+   </children>
+</AnchorPane>
