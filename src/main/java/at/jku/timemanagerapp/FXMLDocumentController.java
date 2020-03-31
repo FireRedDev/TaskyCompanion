@@ -5,7 +5,7 @@
  */
 package at.jku.timemanagerapp;
 
-import at.jku.se.prse.example.calculator.SimpleCalculator.Activity;
+import entities.Activity;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
