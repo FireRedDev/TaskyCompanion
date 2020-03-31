@@ -18,5 +18,6 @@
       <Button layoutX="67.0" layoutY="266.0" mnemonicParsing="false" onAction="#addProject" text="Hinzufügen" />
       <Button layoutX="164.0" layoutY="266.0" mnemonicParsing="false" onAction="#editProject" text="Bearbeiten" />
       <Button layoutX="261.0" layoutY="266.0" mnemonicParsing="false" onAction="#viewProjectList" text="Projektliste" />
+      <Button layoutX="67.0" layoutY="305.0" mnemonicParsing="false" onAction="#viewDashboard" text="Dashboard" />
    </children>
 </AnchorPane>

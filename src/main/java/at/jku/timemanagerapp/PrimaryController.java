@@ -42,5 +42,9 @@ public class PrimaryController {
     private void viewProjectList() throws IOException {
         App.setRoot("View_Projects");
     }
+    @FXML
+    private void viewDashboard() throws IOException {
+        App.setRoot("dashboard");
+    }
     
 }
