@@ -5,11 +5,12 @@
  */
 package at.jku.timemanagerapp;
 
-import at.jku.se.prse.example.calculator.SimpleCalculator.Activity;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+
+import entities.Activity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -55,7 +56,7 @@ public class FXMLDocumentController implements Initializable {
                 Activity emp2 = new Activity(2, "zeichnen", LocalDate.MAX, LocalTime.MIN, "ein Zeichenkurs");
 
         dataList.addAll(emp1,emp2);
-        
+
         // Wrap the ObservableList in a FilteredList (initially display all data).
         FilteredList<Activity> filteredData = new FilteredList<>(dataList, b -> true);
 		

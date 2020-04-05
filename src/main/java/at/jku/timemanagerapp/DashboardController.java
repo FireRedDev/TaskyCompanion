@@ -5,11 +5,12 @@
  */
 package at.jku.timemanagerapp;
 
-import at.jku.se.prse.example.calculator.SimpleCalculator.Activity;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+
+import entities.Activity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

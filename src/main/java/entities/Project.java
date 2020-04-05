@@ -1,5 +1,4 @@
-package at.jku.se.prse.example.calculator.SimpleCalculator;
-
+package entities;
 
 import java.util.LinkedList;
 
