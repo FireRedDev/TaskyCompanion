@@ -6,6 +6,7 @@
 package at.jku.timemanagerapp;
 
 
+import at.jku.timemanagerapp.testpackage.MainApp;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 
@@ -15,7 +16,7 @@ import static javafx.application.Application.launch;
  */
 public class Launcher {
     public static void main(String[] args) {
-        Application.launch(App.class);
+        Application.launch(MainApp.class);
     }
 }
 //I'd like to share my findings regarding launching a javafx 11 app. I'm talking about an existing legacy javafx app originally developed without modules (e.g. w/ Java 8).

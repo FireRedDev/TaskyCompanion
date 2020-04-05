@@ -3,7 +3,7 @@ module at.jku.timemanagerapp {
     requires javafx.fxml;
 
     opens at.jku.timemanagerapp to javafx.fxml;
-    opens entities to javafx.base;
+    opens at.jku.entities to javafx.base;
     exports at.jku.timemanagerapp;
     exports at.jku.entities;
 }
