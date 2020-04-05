@@ -208,7 +208,7 @@ public class MainApp extends Application {
 
         Properties prefs = new Properties();
         try {
-            prefs.load(getClass().getResourceAsStream("app.properties"));
+            prefs.load(App.class.getResourceAsStream("app.properties"));
         } catch (Exception e) {
             System.out.println("No properties file exists"+e.getLocalizedMessage());
         }
@@ -228,7 +228,7 @@ public class MainApp extends Application {
      */
     public void setPersonFilePath(File file) {
         Properties prefs = new Properties();
-        InputStream in = getClass().getResourceAsStream("app.properties");
+        InputStream in = App.class.getResourceAsStream("app.properties");
         try {
             prefs.load(in);
         } catch (Exception e) {
