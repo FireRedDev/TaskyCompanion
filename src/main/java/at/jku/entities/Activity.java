@@ -1,4 +1,4 @@
-package entities;
+package at.jku.entities;
 
 
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package entities;
+package at.jku.entities;
 
 public class Customer {
 

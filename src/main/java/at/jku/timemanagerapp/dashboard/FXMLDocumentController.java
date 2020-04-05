@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.jku.timemanagerapp;
+package at.jku.timemanagerapp.dashboard;
 
-import entities.Activity;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+
+import at.jku.entities.Activity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -24,9 +24,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 /**
  *
- * @author Cool IT Help
+ * @author 
  */
-public class DashboardController implements Initializable {
+public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Label label;
@@ -55,7 +55,7 @@ public class DashboardController implements Initializable {
                 Activity emp2 = new Activity(2, "zeichnen", LocalDate.MAX, LocalTime.MIN, "ein Zeichenkurs");
 
         dataList.addAll(emp1,emp2);
-        
+
         // Wrap the ObservableList in a FilteredList (initially display all data).
         FilteredList<Activity> filteredData = new FilteredList<>(dataList, b -> true);
 		

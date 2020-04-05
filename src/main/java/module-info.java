@@ -5,5 +5,5 @@ module at.jku.timemanagerapp {
     opens at.jku.timemanagerapp to javafx.fxml;
     opens entities to javafx.base;
     exports at.jku.timemanagerapp;
-    exports entities;
+    exports at.jku.entities;
 }
