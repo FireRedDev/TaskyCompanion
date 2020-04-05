@@ -1,7 +1,8 @@
 package at.jku.timemanagerapp.testpackage;
 
 import at.jku.timemanagerapp.App;
-import java.io.IOException;
+
+import java.io.*;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -19,12 +20,13 @@ import at.jku.timemanagerapp.testpackage.view.BirthdayStatisticsController;
 import at.jku.timemanagerapp.testpackage.view.PersonEditDialogController;
 import at.jku.timemanagerapp.testpackage.view.PersonOverviewController;
 import at.jku.timemanagerapp.testpackage.view.RootLayoutController;
-import java.io.File;
+
 import java.util.Properties;
 import javafx.scene.control.Alert;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.SchemaOutputResolver;
 import javax.xml.bind.Unmarshaller;
 
 public class MainApp extends Application {
@@ -194,7 +196,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * Returns the person file preference, i.e. the file that was last opened.
      * The preference is read from the OS specific registry. If no such
@@ -205,6 +207,11 @@ public class MainApp extends Application {
     public File getPersonFilePath() {
 
         Properties prefs = new Properties();
+        try {
+            prefs.load(getClass().getResourceAsStream("app.properties"));
+        } catch (Exception e) {
+            System.out.println("No properties file exists"+e.getLocalizedMessage());
+        }
         String filePath = prefs.getProperty("filePath", null);
         if (filePath != null) {
             return new File(filePath);
@@ -221,6 +228,12 @@ public class MainApp extends Application {
      */
     public void setPersonFilePath(File file) {
         Properties prefs = new Properties();
+        InputStream in = getClass().getResourceAsStream("app.properties");
+        try {
+            prefs.load(in);
+        } catch (Exception e) {
+            System.out.println("No properties file exists");
+        }
         if (file != null) {
             prefs.put("filePath", file.getPath());
 
@@ -231,6 +244,11 @@ public class MainApp extends Application {
 
             // Update the stage title.
             primaryStage.setTitle("AddressApp");
+        }
+        try {
+            prefs.store(new FileOutputStream("app.properties"),"Appproperties");
+        } catch (Exception e) {
+            System.out.println("No properties file exists");
         }
     }
     
