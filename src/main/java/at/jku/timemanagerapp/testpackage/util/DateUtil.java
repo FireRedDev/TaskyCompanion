@@ -4,11 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-/**
- * Helper functions for handling dates.
- * 
- * @author Marco Jakob
- */
 public class DateUtil {
 
     /** The date pattern that is used for conversion. Change as you wish. */

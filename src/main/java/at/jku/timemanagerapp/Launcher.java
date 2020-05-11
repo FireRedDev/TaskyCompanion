@@ -6,7 +6,6 @@
 package at.jku.timemanagerapp;
 
 
-import at.jku.timemanagerapp.testpackage.MainApp;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 
@@ -48,7 +47,7 @@ public class Launcher {
 //                    </execution>
 //                </executions>
 //                <configuration>
-//                    <mainClass>org.openjfx.hellofx.MainApp</mainClass>
+//                    <mainClass>org.openjfx.hellofx.at.jku.timemanagerapp.MainApp</mainClass>
 //                </configuration>
 //            </plugin>
 //        </plugins>

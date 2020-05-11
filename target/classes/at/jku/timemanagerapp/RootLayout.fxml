@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.input.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../../../../../../Downloads/AddressApp-Part-6/src/ch/makery/address/view/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.timemanagerapp.testpackage.view.RootLayoutController">
+<BorderPane prefHeight="400.0" prefWidth="800.0" stylesheets="../../../DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.timemanagerapp.testpackage.view.RootLayoutController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -36,11 +36,7 @@
               <MenuItem mnemonicParsing="false" onAction="#handleShowBirthdayStatistics" text="Show Statistics" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
-            </items>
-          </Menu>
+
         </menus>
       </MenuBar>
    </top>

@@ -2,18 +2,15 @@ package at.jku.timemanagerapp.testpackage.view;
 
 import java.io.File;
 
+import at.jku.timemanagerapp.MainApp;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
-import at.jku.timemanagerapp.testpackage.MainApp;
 
 /**
  * The controller for the root layout. The root layout provides the basic
  * application layout containing a menu bar and space where other JavaFX
  * elements can be placed.
- * 
- * @author Marco Jakob
+ *
  */
 public class RootLayoutController {
 
@@ -34,8 +31,8 @@ public class RootLayoutController {
      */
     @FXML
     private void handleNew() {
-        mainApp.getPersonData().clear();
-        mainApp.setPersonFilePath(null);
+        mainApp.getActivityData().clear();
+        mainApp.setActivityFilePath(null);
     }
 
     /**
@@ -54,19 +51,19 @@ public class RootLayoutController {
         File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
 
         if (file != null) {
-            mainApp.loadPersonDataFromFile(file);
+            mainApp.loadActivityDataFromFile(file);
         }
     }
 
     /**
-     * Saves the file to the person file that is currently open. If there is no
+     * Saves the file to the activity file that is currently open. If there is no
      * open file, the "save as" dialog is shown.
      */
     @FXML
     private void handleSave() {
-        File personFile = mainApp.getPersonFilePath();
-        if (personFile != null) {
-            mainApp.savePersonDataToFile(personFile);
+        File activityFile = mainApp.getActivityFilePath();
+        if (activityFile != null) {
+            mainApp.saveActivityDataToFile(activityFile);
         } else {
             handleSaveAs();
         }
@@ -92,22 +89,11 @@ public class RootLayoutController {
             if (!file.getPath().endsWith(".xml")) {
                 file = new File(file.getPath() + ".xml");
             }
-            mainApp.savePersonDataToFile(file);
+            mainApp.saveActivityDataToFile(file);
         }
     }
 
-    /**
-     * Opens an about dialog.
-     */
-    @FXML
-    private void handleAbout() {
-    	Alert alert = new Alert(AlertType.INFORMATION);
-    	alert.setTitle("AddressApp");
-    	alert.setHeaderText("About");
-    	alert.setContentText("Author: Marco Jakob\nWebsite: http://code.makery.ch");
 
-    	alert.showAndWait();
-    }
 
     /**
      * Closes the application.
@@ -122,6 +108,6 @@ public class RootLayoutController {
      */
     @FXML
     private void handleShowBirthdayStatistics() {
-      mainApp.showBirthdayStatistics();
+      mainApp.showStatistics();
     }
 }
