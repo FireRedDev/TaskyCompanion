@@ -1,21 +1,21 @@
-module at.jku.timemanagerapp {
+module at.gusenbauer.taskycompanion {
 
-    requires javafx.graphics;
 
-    requires javafx.fxml;
     requires javafx.controls;
     requires java.xml.bind;
 
-    exports at.jku.timemanagerapp;
 
-    exports at.jku.timemanagerapp.testpackage.view;
-    exports at.jku.timemanagerapp.testpackage.util;
-    exports at.jku.timemanagerapp.testpackage.model;
-  
-    opens at.jku.timemanagerapp;
+    requires javafx.fxml;
+    exports at.gusenbauer.taskycompanion;
 
-    opens at.jku.timemanagerapp.testpackage.view;
-    opens at.jku.timemanagerapp.testpackage.util;
-    opens at.jku.timemanagerapp.testpackage.model;
-  
+    exports at.gusenbauer.taskycompanion.controller;
+    exports at.gusenbauer.taskycompanion.util;
+    exports at.gusenbauer.taskycompanion.dataclasses;
+
+    opens at.gusenbauer.taskycompanion;
+
+    opens at.gusenbauer.taskycompanion.controller;
+    opens at.gusenbauer.taskycompanion.util;
+    opens at.gusenbauer.taskycompanion.dataclasses;
+
 }

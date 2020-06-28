@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" prefHeight="450.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="at.gusenbauer.taskycompanion.controller.StatisticsController">
+    <children>
+        <DatePicker fx:id="chartDate" layoutX="410.0" layoutY="14.0" AnchorPane.leftAnchor="410.0"/>
+        <BarChart fx:id="barChart" layoutX="53.0" layoutY="46.0" prefHeight="404.0" prefWidth="800.0"
+                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                  AnchorPane.topAnchor="46.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" fx:id="xAxis"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="yAxis" side="LEFT"/>
+            </yAxis>
+        </BarChart>
+        <ChoiceBox fx:id="chartChoice" layoutX="227.0" layoutY="14.0" prefWidth="150.0" AnchorPane.leftAnchor="227.0"/>
+    </children>
+</AnchorPane>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="363.0" prefWidth="693.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
+            fx:controller="at.gusenbauer.taskycompanion.controller.ActivityOverviewController">
+    <children>
+        <SplitPane dividerPositions="0.5" layoutX="153.0" layoutY="70.0" prefHeight="300.0" prefWidth="600.0"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <FlowPane fx:id="filterArea" hgap="5.0" layoutX="-23.0" layoutY="-8.0" prefHeight="105.0"
+                                  prefWidth="400.0" scaleX="0.8" scaleY="0.8" vgap="10.0">
+                            <children>
+                                <Label fx:id="filterLabel" prefWidth="82.0" styleClass="filterArea"
+                                       text="Filter Table:"/>
+                                <TextField fx:id="filterField" prefHeight="25.0" prefWidth="88.0"
+                                           styleClass="filterArea"/>
+                                <Label styleClass="filterArea" text="Von-Bis:"/>
+                                <DatePicker fx:id="vonDate" prefHeight="25.0" prefWidth="60.0"/>
+                                <DatePicker fx:id="bisDate" prefHeight="25.0" prefWidth="60.0"/>
+                                <Label styleClass="filterArea" text="Tags:"/>
+                                <ComboBox fx:id="tagSelector" prefHeight="25.0" prefWidth="72.0"/>
+                                <Button mnemonicParsing="false" onAction="#resetAdvanced"
+                                        text="Reset Advanced Search "/>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </padding>
+                        </FlowPane>
+                        <TableView fx:id="activityTable" layoutX="-12.0" layoutY="81.0" prefHeight="280.0"
+                                   prefWidth="343.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="81.0">
+                            <columns>
+                                <TableColumn fx:id="descriptionColumn" prefWidth="75.0" text="Task"/>
+                                <TableColumn fx:id="projectColumn" prefWidth="75.0" text="Project"/>
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
+                        <Label fx:id="deleteArea" layoutY="290.0" prefHeight="71.0" prefWidth="342.0"
+                               styleClass="delete-area" text="Drag here to delete" visible="false"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="background">
+                    <children>
+                        <Label layoutX="143.0" layoutY="51.0" styleClass="label-header" text="Activity Details"
+                               AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0"/>
+                        <GridPane layoutX="43.0" layoutY="87.0" prefHeight="173.0" prefWidth="393.0"
+                                  AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="87.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints/>
+                            </rowConstraints>
+                            <children>
+                                <Label text="Description"/>
+                                <Label text="Participants" GridPane.rowIndex="1"/>
+                                <Label text="Project" GridPane.rowIndex="2"/>
+                                <Label text="Location" GridPane.rowIndex="3"/>
+                                <Label text="Duration(sec)" GridPane.rowIndex="4"/>
+                                <Label text="Due Date" GridPane.rowIndex="5"/>
+                                <Label text="Tags" GridPane.rowIndex="6"/>
+                                <Label fx:id="descriptionLabel" styleClass="label-bright" text="Label"
+                                       GridPane.columnIndex="1"/>
+                                <Label fx:id="customerLabel" styleClass="label-bright" text="Label"
+                                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                <Label fx:id="projectLabel" styleClass="label-bright" text="Label"
+                                       GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <Label fx:id="cityLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="3"/>
+                                <Label fx:id="durationLabel" styleClass="label-bright" text="Label"
+                                       GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                                <Label fx:id="dueDateLabel" styleClass="label-bright" text="Label"
+                                       GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                                <Label fx:id="tagLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="6"/>
+                            </children>
+                        </GridPane>
+                        <ButtonBar layoutX="54.0" layoutY="250.0" AnchorPane.bottomAnchor="10.0"
+                                   AnchorPane.rightAnchor="10.0">
+                            <buttons>
+                                <Button mnemonicParsing="false" onAction="#handleNewActivity" text="New..."/>
+                                <Button mnemonicParsing="false" onAction="#handleEditActivity" text="Edit..."/>
+                                <Button minWidth="66.0" mnemonicParsing="false" onAction="#handleDeleteActivity"
+                                        prefHeight="33.0" prefWidth="120.0" text="Delete"/>
+                            </buttons>
+                        </ButtonBar>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>

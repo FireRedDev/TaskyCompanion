@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    
+
     working_directory: ~/test
 
     docker:
@@ -10,12 +10,12 @@ jobs:
     steps:
 
       - checkout
-      
+
       - run: mvn package
       - run: mvn test
-      
+
       - store_test_results:
           path: /work/git/teaching-2020.prse.test/target/surefire-reports
-          
+
       - store_artifacts:
           path: /work/git/teaching-2020.prse.test/target/surefire-reports/junit   
