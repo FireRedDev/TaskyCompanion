@@ -25,7 +25,9 @@ import java.util.Locale;
  * The controller for the birthday statistics view.
  */
 public class StatisticsController {
+public StatisticsController() {
 
+}
     @FXML
     public DatePicker chartDate;
     @FXML
@@ -36,7 +38,7 @@ public class StatisticsController {
     private CategoryAxis xAxis;
     @FXML
     private NumberAxis yAxis;
-    private ObservableList<String> indexNames = FXCollections.observableArrayList();
+    private final ObservableList<String> indexNames = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class. This method is automatically called
@@ -44,14 +46,14 @@ public class StatisticsController {
      */
     @FXML
     private void initialize() {
-        ObservableList<ChartCategory> chartCategories //
+        final ObservableList<ChartCategory> chartCategories //
                 = FXCollections.observableArrayList(ChartCategory.YEAR, ChartCategory.WEEK);
 
 
         chartChoice.setItems(chartCategories);
         chartChoice.setValue(ChartCategory.YEAR);
         // Get an array with the English month names.
-        String[] months = DateFormatSymbols.getInstance(Locale.ENGLISH).getMonths();
+        final String[] months = DateFormatSymbols.getInstance(Locale.ENGLISH).getMonths();
         // Convert it to a list and add it to our ObservableList of months.
         indexNames.addAll(Arrays.asList(months));
 
@@ -67,18 +69,14 @@ public class StatisticsController {
      *
      * @param activitys
      */
-    public void setActivityData(List<Activity> activitys, LocalDate date) {
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        ObservableList<String> qo = FXCollections.observableArrayList();
-        switch (chartChoice.getValue()) {
-            case YEAR:
-                prepareYearStatistics(activitys, date, series);
-                break;
-            case WEEK:
+    public void setActivityData(final List<Activity> activitys, final LocalDate date) {
+        final XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
-
-                prepareWeekStatistics(activitys, date, series);
-                break;
+        ChartCategory value = chartChoice.getValue();
+        if (value == ChartCategory.YEAR) {
+            prepareYearStatistics(activitys, date, series);
+        } else if (value == ChartCategory.WEEK) {
+            prepareWeekStatistics(activitys, date, series);
         }
 
 
@@ -87,17 +85,17 @@ public class StatisticsController {
         barChart.getData().add(series);
     }
 
-    private void prepareYearStatistics(List<Activity> activitys, LocalDate date, XYChart.Series<String, Integer> series) {
+    private void prepareYearStatistics(final List<Activity> activitys, final LocalDate date, final XYChart.Series<String, Integer> series) {
         int[] monthCounter = new int[12];
-        for (Activity p : activitys) {
+        for (final Activity p : activitys) {
             if (p.getDueDate().getYear() == date.getYear()) {
-                int month = p.getDueDate().getMonthValue() - 1;
+                final int month = p.getDueDate().getMonthValue() - 1;
                 monthCounter[month] = monthCounter[month] + (p.getDuration() / 60);
             }
         }
         xAxis.setLabel("Monate des Jahres");
         yAxis.setLabel("Gesamte Zeit der Tasks in Stunden");
-        String[] months = DateFormatSymbols.getInstance(Locale.ENGLISH).getMonths();
+        final String[] months = DateFormatSymbols.getInstance(Locale.ENGLISH).getMonths();
         // Convert it to a list and add it to our ObservableList of months.
 
         indexNames.clear();
@@ -111,18 +109,18 @@ public class StatisticsController {
         }
     }
 
-    private void prepareWeekStatistics(List<Activity> activitys, LocalDate date, XYChart.Series<String, Integer> series) {
+    private void prepareWeekStatistics(final List<Activity> activitys, final LocalDate date, final XYChart.Series<String, Integer> series) {
         String[] months;
         int[] dayOfWeekCounter = new int[7];
         final DayOfWeek firstDayOfWeek = WeekFields.of(Locale.getDefault()).getFirstDayOfWeek();
-        final DayOfWeek lastDayOfWeek = DayOfWeek.of(((firstDayOfWeek.getValue() + 5) % DayOfWeek.values().length) + 1);
-        for (Activity p : activitys) {
+        final DayOfWeek lastDayOfWeek = DayOfWeek.of((firstDayOfWeek.getValue() + 5) % DayOfWeek.values().length + 1);
+        for (final Activity p : activitys) {
 
-            LocalDate firstDate = date.with(TemporalAdjusters.previousOrSame(firstDayOfWeek)); // first day
-            LocalDate lastDate = date.with(TemporalAdjusters.nextOrSame(lastDayOfWeek));
-            LocalDate currentDate = p.getDueDate();
-            if (currentDate.isEqual(date) || (currentDate.isAfter(firstDate) && currentDate.isBefore(lastDate))) {
-                int day = currentDate.getDayOfWeek().getValue() - 1;
+            final LocalDate firstDate = date.with(TemporalAdjusters.previousOrSame(firstDayOfWeek)); // first day
+            final LocalDate lastDate = date.with(TemporalAdjusters.nextOrSame(lastDayOfWeek));
+            final LocalDate currentDate = p.getDueDate();
+            if (currentDate.isEqual(date) || currentDate.isAfter(firstDate) && currentDate.isBefore(lastDate)) {
+                final int day = currentDate.getDayOfWeek().getValue() - 1;
                 dayOfWeekCounter[day] = dayOfWeekCounter[day] + (p.getDuration() / 60);
             }
         }

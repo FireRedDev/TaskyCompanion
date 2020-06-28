@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
  * Dialog to edit details of a activity.
  */
 public class ActivityEditDialogController {
+    public ActivityEditDialogController() {
+    }
 
     @FXML
     private TextField descriptionField;
@@ -40,7 +42,7 @@ public class ActivityEditDialogController {
 
     private Stage dialogStage;
     private Activity activity;
-    private boolean okClicked = false;
+    private boolean okClicked;
     private AnimationTimer timer;
     private boolean timerRunning;
 
@@ -57,7 +59,7 @@ public class ActivityEditDialogController {
      *
      * @param dialogStage
      */
-    public void setDialogStage(Stage dialogStage) {
+    public void setDialogStage(final Stage dialogStage) {
         this.dialogStage = dialogStage;
 
         // Set the dialog icon.
@@ -69,7 +71,7 @@ public class ActivityEditDialogController {
      *
      * @param activity
      */
-    public void setActivity(Activity activity) {
+    public void setActivity(final Activity activity) {
         this.activity = activity;
 
         descriptionField.setText(activity.getDescription());
@@ -128,46 +130,46 @@ public class ActivityEditDialogController {
      * @return true if the input is valid
      */
     private boolean isInputValid() {
-        String errorMessage = "";
+        StringBuffer errorMessage = new StringBuffer("");
 
         if (descriptionField.getText() == null || descriptionField.getText().length() == 0) {
-            errorMessage += "No valid first name!\n";
+            errorMessage.append("No valid first name!\n");
         }
         if (customerField.getText() == null || customerField.getText().length() == 0) {
-            errorMessage += "No valid last name!\n";
+            errorMessage.append("No valid last name!\n");
         }
         if (projectField.getText() == null || projectField.getText().length() == 0) {
-            errorMessage += "No valid street!\n";
+            errorMessage.append("No valid street!\n");
         }
 
         if (durationField.getText() == null || durationField.getText().length() == 0) {
-            errorMessage += "No valid postal code!\n";
+            errorMessage.append("No valid postal code!\n");
         } else {
             // try to parse the postal code into an int.
             try {
                 Integer.parseInt(durationField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += "No valid postal code (must be an integer)!\n";
+                errorMessage.append("No valid postal code (must be an integer)!\n");
             }
         }
 
         if (cityField.getText() == null || cityField.getText().length() == 0) {
-            errorMessage += "No valid city!\n";
+            errorMessage.append("No valid city!\n");
         }
 
         if (dueDateField.getValue() == null) {
-            errorMessage += "No valid birthday!\n";
+            errorMessage.append("No valid birthday!\n");
         }
 
         if (errorMessage.length() == 0) {
             return true;
         } else {
             // Show the error message.
-            Alert alert = new Alert(AlertType.ERROR);
+            final Alert alert = new Alert(AlertType.ERROR);
             alert.initOwner(dialogStage);
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Please correct invalid fields");
-            alert.setContentText(errorMessage);
+            alert.setContentText(errorMessage.toString());
 
             alert.showAndWait();
 
@@ -176,12 +178,12 @@ public class ActivityEditDialogController {
     }
 
     @FXML
-    void startTimeTracking() {
+    public void startTimeTracking() {
         if (timerRunning) {
             timer.stop();
             timerRunning = false;
         } else {
-            long startTime = System.currentTimeMillis();
+            final long startTime = System.currentTimeMillis();
             timer = new AnimationTimer() {
                 @Override
                 public void start() {
@@ -190,8 +192,8 @@ public class ActivityEditDialogController {
                 }
 
                 @Override
-                public void handle(long now) {
-                    long elapsedMillis = System.currentTimeMillis() - startTime;
+                public void handle(final long now) {
+                    final long elapsedMillis = System.currentTimeMillis() - startTime;
                     durationField.setText(Long.toString(elapsedMillis / 1000));
                 }
             };

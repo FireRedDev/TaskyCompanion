@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="363.0" prefWidth="693.0"
-            xmlns="http://javafx.com/javafx/10.0.2-internal"
+<AnchorPane xmlns:fx="http://javafx.com/fxml" prefHeight="363.0" prefWidth="693.0"
+            xmlns="http://javafx.com/javafx"
             fx:controller="at.gusenbauer.taskycompanion.controller.ActivityOverviewController">
     <children>
         <SplitPane dividerPositions="0.5" layoutX="153.0" layoutY="70.0" prefHeight="300.0" prefWidth="600.0"

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TaskyCompanion.iml" filepath="$PROJECT_DIR$/TaskyCompanion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TimeManagerApp.iml" filepath="$PROJECT_DIR$/TimeManagerApp.iml" />
     </modules>
   </component>
 </project>

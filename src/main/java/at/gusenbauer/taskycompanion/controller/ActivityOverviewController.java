@@ -78,7 +78,7 @@ public class ActivityOverviewController {
         activityTable.setRowFactory(t -> new TableRow<>() {
 
             @Override
-            protected void updateItem(Activity activity, boolean empty) {
+            protected void updateItem(final Activity activity, final boolean empty) {
                 super.updateItem(activity, empty);
                 styleProperty().unbind();
                 if (empty) {
@@ -91,10 +91,10 @@ public class ActivityOverviewController {
                 }
             }
 
-            private String formatColorString(Color color) {
-                int r = (int) (color.getRed() * 255);
-                int g = (int) (color.getGreen() * 255);
-                int b = (int) (color.getBlue() * 255);
+            private String formatColorString(final Color color) {
+                final int r = (int) (color.getRed() * 255);
+                final int g = (int) (color.getGreen() * 255);
+                final int b = (int) (color.getBlue() * 255);
                 return String.format("#%02x%02x%02x", r, g, b);
             }
         });
@@ -103,19 +103,19 @@ public class ActivityOverviewController {
     private void setUpDragAndDrop() {
         activityTable.setOnDragDetected(new EventHandler<MouseEvent>() { //drag
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(final MouseEvent event) {
                 // drag was detected, start drag-and-drop gesture
-                Activity selected = activityTable.getSelectionModel().getSelectedItem();
+                final Activity selected = activityTable.getSelectionModel().getSelectedItem();
                 if (selected != null) {
 
-                    Dragboard db = activityTable.startDragAndDrop(TransferMode.ANY);
-                    ClipboardContent content = new ClipboardContent();
+                    final Dragboard db = activityTable.startDragAndDrop(TransferMode.ANY);
+                    final ClipboardContent content = new ClipboardContent();
                     content.putString(selected.getDescription());
                     db.setContent(content);
                     event.consume();
                 }
                 deleteArea.setStyle("-fx-background-color:#34c3eb;");
-                FadeTransition fadeIn = new FadeTransition(
+                final FadeTransition fadeIn = new FadeTransition(
                         Duration.millis(500)
                 );
                 fadeIn.setNode(deleteArea);
@@ -129,10 +129,10 @@ public class ActivityOverviewController {
         });
         deleteArea.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
-            public void handle(DragEvent event) {
+            public void handle(final DragEvent event) {
                 deleteArea.setVisible(true);
                 // data is dragged over the target
-                Dragboard db = event.getDragboard();
+
                 if (event.getDragboard().hasString()) {
                     event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
                 }
@@ -141,12 +141,12 @@ public class ActivityOverviewController {
         });
         deleteArea.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
-            public void handle(DragEvent event) {
-                Dragboard db = event.getDragboard();
+            public void handle(final DragEvent event) {
+
                 boolean success = false;
                 if (event.getDragboard().hasString()) {
 
-                    Activity selected = activityTable.getSelectionModel().getSelectedItem();
+                    final Activity selected = activityTable.getSelectionModel().getSelectedItem();
                     if (selected != null) {
 
                         mainApp.activityData.remove(selected);
@@ -161,7 +161,7 @@ public class ActivityOverviewController {
             }
         });
         activityTable.setOnDragExited(new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
+            public void handle(final DragEvent event) {
                 /* mouse moved away, remove the graphical cues */
 
 
@@ -176,7 +176,7 @@ public class ActivityOverviewController {
      *
      * @param mainApp
      */
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(final MainApp mainApp) {
         this.mainApp = mainApp;
 
         // Add observable list data to the table
@@ -190,7 +190,7 @@ public class ActivityOverviewController {
      *
      * @param activity the activity or null
      */
-    private void showActivityDetails(Activity activity) {
+    private void showActivityDetails(final Activity activity) {
         if (activity != null) {
             // Fill the labels with info from the activity object.
             descriptionLabel.setText(activity.getDescription());
@@ -217,13 +217,13 @@ public class ActivityOverviewController {
      */
     @FXML
     private void handleDeleteActivity() {
-        int selectedIndex = activityTable.getSelectionModel().getSelectedIndex();
+        final int selectedIndex = activityTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             //activityTable.getItems().remove(selectedIndex);
             mainApp.activityData.remove(selectedIndex);
         } else {
             // Nothing selected.
-            Alert alert = new Alert(AlertType.WARNING);
+            final Alert alert = new Alert(AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("No Selection");
             alert.setHeaderText("No Activity Selected");
@@ -239,8 +239,8 @@ public class ActivityOverviewController {
      */
     @FXML
     private void handleNewActivity() {
-        Activity tempActivity = new Activity();
-        boolean okClicked = mainApp.showActivityEditDialog(tempActivity);
+        final Activity tempActivity = new Activity();
+        final boolean okClicked = mainApp.showActivityEditDialog(tempActivity);
         if (okClicked) {
             mainApp.getActivityData().add(tempActivity);
         }
@@ -252,16 +252,16 @@ public class ActivityOverviewController {
      */
     @FXML
     private void handleEditActivity() {
-        Activity selectedActivity = activityTable.getSelectionModel().getSelectedItem();
+        final Activity selectedActivity = activityTable.getSelectionModel().getSelectedItem();
         if (selectedActivity != null) {
-            boolean okClicked = mainApp.showActivityEditDialog(selectedActivity);
+            final boolean okClicked = mainApp.showActivityEditDialog(selectedActivity);
             if (okClicked) {
                 showActivityDetails(selectedActivity);
             }
 
         } else {
             // Nothing selected.
-            Alert alert = new Alert(AlertType.WARNING);
+            final Alert alert = new Alert(AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("No Selection");
             alert.setHeaderText("No Activity Selected");
@@ -271,7 +271,7 @@ public class ActivityOverviewController {
         }
     }
 
-    public void resetAdvanced(ActionEvent actionEvent) {
+    public void resetAdvanced(final ActionEvent actionEvent) {
 
         vonDate.setValue(null);
         bisDate.setValue(null);

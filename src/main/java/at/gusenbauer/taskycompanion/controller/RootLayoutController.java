@@ -12,6 +12,8 @@ import java.io.File;
  * elements can be placed.
  */
 public class RootLayoutController {
+    public RootLayoutController() {
+    }
 
     // Reference to the main application
     private MainApp mainApp;
@@ -21,7 +23,7 @@ public class RootLayoutController {
      *
      * @param mainApp
      */
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(final MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -39,15 +41,15 @@ public class RootLayoutController {
      */
     @FXML
     private void handleOpen() {
-        FileChooser fileChooser = new FileChooser();
+        final FileChooser fileChooser = new FileChooser();
 
         // Set extension filter
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+        final FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
                 "XML files (*.xml)", "*.xml");
         fileChooser.getExtensionFilters().add(extFilter);
 
         // Show save file dialog
-        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
+        final File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
 
         if (file != null) {
             mainApp.loadActivityDataFromFile(file);
@@ -60,7 +62,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleSave() {
-        File activityFile = mainApp.getActivityFilePath();
+        final File activityFile = mainApp.getActivityFilePath();
         if (activityFile != null) {
             mainApp.saveActivityDataToFile(activityFile);
         } else {
@@ -73,10 +75,10 @@ public class RootLayoutController {
      */
     @FXML
     private void handleSaveAs() {
-        FileChooser fileChooser = new FileChooser();
+        final FileChooser fileChooser = new FileChooser();
 
         // Set extension filter
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+        final FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
                 "XML files (*.xml)", "*.xml");
         fileChooser.getExtensionFilters().add(extFilter);
 

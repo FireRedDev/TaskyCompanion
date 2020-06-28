@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="TimeManagerApp" />
         <module name="TaskyCompanion" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="TaskyCompanion" target="11" />
+      <module name="TimeManagerApp" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

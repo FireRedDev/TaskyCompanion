@@ -34,7 +34,7 @@ public class Activity {
      * @param description
      * @param customer
      */
-    public Activity(String description, String customer) {
+    public Activity(final String description, final String customer) {
         this.description = new SimpleStringProperty(description);
         this.customer = new SimpleStringProperty(customer);
 
@@ -44,11 +44,11 @@ public class Activity {
         this.city = new SimpleStringProperty("some city");
         this.dueDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
         this.color = new SimpleObjectProperty<Color>(Color.LIGHTBLUE);
-        ObservableList<String> observableList = FXCollections.observableArrayList();
+        final ObservableList<String> observableList = FXCollections.observableArrayList();
         this.tags = new SimpleListProperty<String>(observableList);
     }
 
-    public Activity(String description, String customer, String project, int duration, String city, LocalDate dueDate, Color color) {
+    public Activity(final String description, final String customer, final String project, final int duration, final String city, final LocalDate dueDate, final Color color) {
         this.description = new SimpleStringProperty(description);
         this.customer = new SimpleStringProperty(customer);
         this.project = new SimpleStringProperty(project);
@@ -56,7 +56,7 @@ public class Activity {
         this.city = new SimpleStringProperty(city);
         this.dueDate = new SimpleObjectProperty<LocalDate>(dueDate);
         this.color = new SimpleObjectProperty<Color>(color);
-        ObservableList<String> observableList = FXCollections.observableArrayList();
+        final ObservableList<String> observableList = FXCollections.observableArrayList();
         this.tags = new SimpleListProperty<String>(observableList);
     }
 
@@ -64,7 +64,7 @@ public class Activity {
         return tags.get();
     }
 
-    public void setTags(ObservableList<String> tags) {
+    public void setTags(final ObservableList<String> tags) {
         this.tags.set(tags);
     }
 
@@ -76,7 +76,7 @@ public class Activity {
         return color.get();
     }
 
-    public void setColor(Color color) {
+    public void setColor(final Color color) {
         this.color.set(color);
     }
 
@@ -88,7 +88,7 @@ public class Activity {
         return description.get();
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description.set(description);
     }
 
@@ -100,7 +100,7 @@ public class Activity {
         return customer.get();
     }
 
-    public void setCustomer(String customer) {
+    public void setCustomer(final String customer) {
         this.customer.set(customer);
     }
 
@@ -112,7 +112,7 @@ public class Activity {
         return project.get();
     }
 
-    public void setProject(String project) {
+    public void setProject(final String project) {
         this.project.set(project);
     }
 
@@ -124,7 +124,7 @@ public class Activity {
         return duration.get();
     }
 
-    public void setDuration(int postalCode) {
+    public void setDuration(final int postalCode) {
         this.duration.set(postalCode);
     }
 
@@ -136,7 +136,7 @@ public class Activity {
         return city.get();
     }
 
-    public void setCity(String city) {
+    public void setCity(final String city) {
         this.city.set(city);
     }
 
@@ -149,7 +149,7 @@ public class Activity {
         return dueDate.get();
     }
 
-    public void setDueDate(LocalDate birthday) {
+    public void setDueDate(final LocalDate birthday) {
         this.dueDate.set(birthday);
     }
 

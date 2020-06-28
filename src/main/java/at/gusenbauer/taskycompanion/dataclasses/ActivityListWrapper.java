@@ -7,6 +7,8 @@ import java.util.List;
 
 @XmlRootElement(name = "activities")
 public class ActivityListWrapper {
+    public ActivityListWrapper() {
+    }
 
     private List<Activity> activities;
 
@@ -15,7 +17,7 @@ public class ActivityListWrapper {
         return activities;
     }
 
-    public void setActivities(List<Activity> activities) {
+    public void setActivities(final List<Activity> activities) {
         this.activities = activities;
     }
 }

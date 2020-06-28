@@ -4,7 +4,7 @@ public class Tag {
 
     private String tagname;
 
-    public Tag(String tagname) {
+    public Tag(final String tagname) {
         this.tagname = tagname;
     }
 
@@ -12,7 +12,7 @@ public class Tag {
         return tagname;
     }
 
-    public void setTagname(String tagname) {
+    public void setTagname(final String tagname) {
         this.tagname = tagname;
     }
 }
