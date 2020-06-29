@@ -30,7 +30,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -42,6 +42,8 @@ public class MainApp extends Application {
     public ObservableList<Activity> activityData = FXCollections.observableArrayList();
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private ActivityOverviewController overviewcontroller;
+    private LinkedList<String> tagList;
 
     /**
      * Constructor
@@ -137,6 +139,7 @@ public class MainApp extends Application {
             // Give the controller access to the main app.
             final ActivityOverviewController controller = loader.getController();
             controller.setMainApp(this);
+            overviewcontroller = controller;
             // Clear activity details.
             preprareFiltering(controller);
 
@@ -175,9 +178,10 @@ public class MainApp extends Application {
     }
 
     public void initTagList(final ActivityOverviewController controller) {
-        final List liste = activityData.stream().flatMap(listContainer -> listContainer.getTags().stream()).distinct().collect(Collectors.toList());
+        tagList = activityData.stream().flatMap(listContainer -> listContainer.getTags().stream()).distinct().collect(Collectors.toCollection(LinkedList::new));
 
-        controller.tagSelector.setItems(FXCollections.observableArrayList(liste));
+
+        controller.tagSelector.setItems(FXCollections.observableList(tagList));
     }
 
     private void filter(final ActivityOverviewController controller, final FilteredList<Activity> filteredData, final String newValue) {
@@ -242,9 +246,8 @@ public class MainApp extends Application {
             final ActivityEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setActivity(activity);
-
+            controller.setMainApp(this);
             // Set the dialog icon.
-
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -418,5 +421,11 @@ public class MainApp extends Application {
      */
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public void updateOverViewController() {
+        tagList.clear();
+        tagList.addAll(
+                activityData.stream().flatMap(listContainer -> listContainer.getTags().stream()).distinct().collect(Collectors.toList()));
     }
 }

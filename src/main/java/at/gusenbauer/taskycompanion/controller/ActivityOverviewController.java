@@ -243,6 +243,7 @@ public class ActivityOverviewController {
         final boolean okClicked = mainApp.showActivityEditDialog(tempActivity);
         if (okClicked) {
             mainApp.getActivityData().add(tempActivity);
+            mainApp.updateOverViewController();
         }
     }
 
@@ -257,6 +258,7 @@ public class ActivityOverviewController {
             final boolean okClicked = mainApp.showActivityEditDialog(selectedActivity);
             if (okClicked) {
                 showActivityDetails(selectedActivity);
+                mainApp.updateOverViewController();
             }
 
         } else {
@@ -272,9 +274,9 @@ public class ActivityOverviewController {
     }
 
     public void resetAdvanced(final ActionEvent actionEvent) {
-
         vonDate.setValue(null);
         bisDate.setValue(null);
         tagSelector.getSelectionModel().clearSelection();
     }
+
 }

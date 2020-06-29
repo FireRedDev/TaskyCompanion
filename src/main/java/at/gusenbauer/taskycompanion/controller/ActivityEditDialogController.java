@@ -1,5 +1,6 @@
 package at.gusenbauer.taskycompanion.controller;
 
+import at.gusenbauer.taskycompanion.MainApp;
 import at.gusenbauer.taskycompanion.dataclasses.Activity;
 import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
@@ -23,6 +24,8 @@ public class ActivityEditDialogController {
     public ActivityEditDialogController() {
     }
 
+    // Reference to the main application.
+    private MainApp mainApp;
     @FXML
     private TextField descriptionField;
     @FXML
@@ -52,6 +55,10 @@ public class ActivityEditDialogController {
      */
     @FXML
     private void initialize() {
+    }
+
+    public void setMainApp(final MainApp mainApp) {
+        this.mainApp = mainApp;
     }
 
     /**
@@ -110,9 +117,10 @@ public class ActivityEditDialogController {
             activity.setTags(FXCollections.observableList(
                     new ArrayList<String>(
                             Arrays.asList(
-                                    tagList.getText().split(" , ")))));
+                                    tagList.getText().replaceAll("\\s+", "").split(",")))));
             okClicked = true;
             dialogStage.close();
+
         }
     }
 
@@ -133,32 +141,32 @@ public class ActivityEditDialogController {
         StringBuffer errorMessage = new StringBuffer("");
 
         if (descriptionField.getText() == null || descriptionField.getText().length() == 0) {
-            errorMessage.append("No valid first name!\n");
+            errorMessage.append("No valid Description!\n");
         }
         if (customerField.getText() == null || customerField.getText().length() == 0) {
-            errorMessage.append("No valid last name!\n");
+            errorMessage.append("No valid Participant Description!\n");
         }
         if (projectField.getText() == null || projectField.getText().length() == 0) {
-            errorMessage.append("No valid street!\n");
+            errorMessage.append("No valid Project Name!\n");
         }
 
         if (durationField.getText() == null || durationField.getText().length() == 0) {
-            errorMessage.append("No valid postal code!\n");
+            errorMessage.append("No valid Duration!\n");
         } else {
             // try to parse the postal code into an int.
             try {
                 Integer.parseInt(durationField.getText());
             } catch (NumberFormatException e) {
-                errorMessage.append("No valid postal code (must be an integer)!\n");
+                errorMessage.append("No valid Duration (must be an integer)!\n");
             }
         }
 
         if (cityField.getText() == null || cityField.getText().length() == 0) {
-            errorMessage.append("No valid city!\n");
+            errorMessage.append("No valid Location Text!\n");
         }
 
         if (dueDateField.getValue() == null) {
-            errorMessage.append("No valid birthday!\n");
+            errorMessage.append("No valid Date!\n");
         }
 
         if (errorMessage.length() == 0) {
