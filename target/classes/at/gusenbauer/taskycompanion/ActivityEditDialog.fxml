@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml"  prefHeight="354.0" prefWidth="439.0" styleClass="background"
+<AnchorPane xmlns:fx="http://javafx.com/fxml" prefHeight="354.0" prefWidth="439.0" styleClass="background"
             xmlns="http://javafx.com/javafx"
             fx:controller="at.gusenbauer.taskycompanion.controller.ActivityEditDialogController">
     <children>
@@ -30,12 +30,13 @@
                 <Label text="Duration" GridPane.rowIndex="4"/>
                 <Label text="Due Date" GridPane.rowIndex="5"/>
                 <Label text="Color" GridPane.rowIndex="6"/>
-                <Label text="Tags (Komma-Separiert)" GridPane.rowIndex="7"/>
+                <Label text="Tags (comma seperated)" GridPane.rowIndex="7"/>
                 <TextField fx:id="descriptionField" GridPane.columnIndex="1"/>
                 <TextField fx:id="customerField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                 <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <TextField fx:id="projectField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <TextField fx:id="cityField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <TextField fx:id="cityField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <TextField fx:id="projectField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
                 <TextField fx:id="durationField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                 <DatePicker fx:id="dueDateField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
                 <ColorPicker fx:id="colorPic" layoutX="228.0" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
