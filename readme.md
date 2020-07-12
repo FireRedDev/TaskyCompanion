@@ -1,5 +1,11 @@
 # Software PR Projekt Gusenbauer TodoManager
 
+
+## Beschreibung
+
+In diesem Projekt wurde ein Aufgabenplaner als Desktopapp implementiert. 
+Mit diesem Programm („TaskyCompanion“) kann man Aufgaben verwalten, kategorisieren, filtern, Zeittracking betreiben, diese Daten sichern und importieren und Statistiken ansehen.
+
 Das Projekt baut auf dem JavaFX Maven Archetype aus. Benutzte Technologien sind hauptsächlich Java und JavaFX. Das Projekt ist in die MainApp Klasse, eine Launcher Klasse und drei Packages gegliedert: 
 Dataclasses – beinhaltet Datenobjekte die repräsentiert werden
 Util – Diverse Hilfsklassen wie Enums & Dateparser
