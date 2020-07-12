@@ -452,4 +452,5 @@ public class MainApp extends Application {
         tagList.addAll(
                 activityData.stream().flatMap(listContainer -> listContainer.getTags().stream()).distinct().collect(Collectors.toList()));
     }
+
 }

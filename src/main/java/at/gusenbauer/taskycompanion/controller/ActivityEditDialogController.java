@@ -75,9 +75,10 @@ public class ActivityEditDialogController {
      */
     public void setDialogStage(final Stage dialogStage) {
         this.dialogStage = dialogStage;
-
         // Set the dialog icon.
-        this.dialogStage.getIcons().add(new Image(this.getClass().getResourceAsStream("32x32.png")));
+        this.dialogStage.getIcons().add(new Image(MainApp.class.getResourceAsStream("32x32.png")));
+
+
     }
 
     /**
