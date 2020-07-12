@@ -1,4 +1,4 @@
-# Software PR Projekt Gusenbauer TodoManager
+# Software PR Projekt Gusenbauer TaskyCompanion
 
 
 ## Beschreibung
