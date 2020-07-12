@@ -10,12 +10,18 @@ Im Ressources Ordner finden sich die Views (fxml) und die App-Settings als Prope
 ## Installationsanleitung
 
 Benötigt: Maven, Java, je nach Ausführmethode OpenJFX oder ein JDK mit OpenJFX inkludiert, z.B. Liberica JDK
+
+
 Via IDE: Rechtsklick auf Launcher.java, Ausführen
+
+
 Via Maven:
 mvn clean javafx:run
 
+
 Via JLINK/RunScript:
 Mvn javafx:jlink
+
 
 Im Projektdirectoryroot in der Shell:
 target/image/bin/java -m at.gusenbauer.taskycompanion/at.gusenbauer.taskycompanion.Launcher
