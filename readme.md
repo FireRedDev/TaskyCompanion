@@ -1,4 +1,4 @@
-Software PR Projekt Gusenbauer TodoManager
+#Software PR Projekt Gusenbauer TodoManager
 
 Das Projekt baut auf dem JavaFX Maven Archetype aus. Benutzte Technologien sind hauptsächlich Java und JavaFX. Das Projekt ist in die MainApp Klasse, eine Launcher Klasse und drei Packages gegliedert: 
 Dataclasses – beinhaltet Datenobjekte die repräsentiert werden
@@ -7,7 +7,8 @@ Controller – beinhaltet die Steuernde Logik, die Controller
 Im Ressources Ordner finden sich die Views (fxml) und die App-Settings als Property-File, wie auch Styling-Related Content.
 
 
-Installationsanleitung
+##Installationsanleitung
+
 Benötigt: Maven, Java, je nach Ausführmethode OpenJFX oder ein JDK mit OpenJFX inkludiert, z.B. Liberica JDK
 Via IDE: Rechtsklick auf Launcher.java, Ausführen
 Via Maven:
