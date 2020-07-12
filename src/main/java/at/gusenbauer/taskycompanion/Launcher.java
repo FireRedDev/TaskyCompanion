@@ -12,6 +12,12 @@ import javafx.application.Application;
  * @author chris
  */
 public class Launcher {
+
+    /**
+     * Wrapper Main Class to launch the JavaFX App for Compatability Reasons
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Application.launch(MainApp.class);
     }

@@ -34,6 +34,11 @@ import java.util.LinkedList;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+/**
+ * The Main Class orchestrating the LifeCycle of this JavaFX Application
+ *
+ * @author chris
+ */
 public class MainApp extends Application {
 
     /**
@@ -46,25 +51,27 @@ public class MainApp extends Application {
     private LinkedList<String> tagList;
 
     /**
-     * Constructor
+     * Constructor with default Values
      */
     public MainApp() {
-        // Add some sample data
         super();
         final Activity withTags = new Activity("Dancing", "Tanzlehrer");
         withTags.setTags(FXCollections.observableArrayList("Sport", "Lernen"));
         activityData.add(withTags);
         activityData.add(new Activity("Angular App schreiben", "Mueller Elektronik GMBH"));
         activityData.add(new Activity("Api Doku lesen", "Bundesregierung"));
-        activityData.add(new Activity("Ausflug Steiermark", "Familie", "Reisen", 60 * 10, "Weinviertel", LocalDate.of(2020, 6, 28), Color.BLACK));
-        activityData.add(new Activity("Meeting Steiermark", "Familie", "Reisen", 60 * 20, "Weinviertel", LocalDate.of(2020, 6, 27), Color.ORANGE));
+        activityData.add(new Activity("Ausflug Steiermark", "Familie", "Reisen", 62 * 10, "Weinviertel", LocalDate.of(2020, 6, 28), Color.BLACK));
+        activityData.add(new Activity("Meeting Steiermark", "Familie", "Reisen", 61 * 200000, "Weinviertel", LocalDate.of(2020, 6, 27), Color.ORANGE));
         final Activity withTags2 = new Activity("Swaggiges Treffen", "Coolio", "Swag", 60 * 35, "Swagtown", LocalDate.of(2020, 6, 26), Color.PINK);
         withTags2.setTags(FXCollections.observableArrayList("Spaß", "Lernen"));
         activityData.add(withTags2);
-
-
     }
 
+    /**
+     * Launches the JavaFX App
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
     }
@@ -92,12 +99,12 @@ public class MainApp extends Application {
     }
 
     /**
-     * Initializes the root layout and tries to load the last opened
+     * Initializes the root layout, root styling and tries to load the last opened
      * activity file.
      */
     public void initRootLayout() {
         try {
-            // Load root layout from fxml file.
+            // Load root layout from fxml file in the Ressources Folder.
             FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("RootLayout" + ".fxml"));
             rootLayout = (BorderPane) loader.load();
 
@@ -149,6 +156,12 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Sets Up several Event Listeners to trigger the filtering of the TableList
+     * Also initializes the Drop Down with the Tags
+     *
+     * @param controller
+     */
     private void preprareFiltering(final ActivityOverviewController controller) {
         // 1. Wrap the ObservableList in a FilteredList (initially display all data).
 
@@ -177,20 +190,25 @@ public class MainApp extends Application {
         controller.activityTable.setItems(sortedData);
     }
 
+    /**
+     * Prepares ComboBox
+     *
+     * @param controller
+     */
     public void initTagList(final ActivityOverviewController controller) {
         tagList = activityData.stream().flatMap(listContainer -> listContainer.getTags().stream()).distinct().collect(Collectors.toCollection(LinkedList::new));
-
-
         controller.tagSelector.setItems(FXCollections.observableList(tagList));
     }
 
+    /**
+     * Filters the data based on several criterias: The input text, date range and tag selection
+     *
+     * @param controller
+     * @param filteredData
+     * @param newValue
+     */
     private void filter(final ActivityOverviewController controller, final FilteredList<Activity> filteredData, final String newValue) {
         filteredData.setPredicate(activity -> {
-
-            // If filter text is empty, display all persons.
-            // if (newValue == null || newValue.isEmpty()) {
-            //  return true;
-            //}
 
             Boolean correctDate = true;
             Boolean correctTag = true;
@@ -260,7 +278,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Opens a dialog to show birthday statistics.
+     * Opens a dialog to show time statistics.
      */
     public void showStatistics() {
         try {
@@ -275,7 +293,8 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
 
             // Set the dialog icon.
-            dialogStage.getIcons().add(new Image("file:resources/images/calendar.png"));
+            dialogStage.getIcons().add(new Image(this.getClass().getResourceAsStream("32x32.png")));
+
 
             // Set the activitys into the controller.
             final StatisticsController controller = loader.getController();
@@ -298,8 +317,9 @@ public class MainApp extends Application {
 
     /**
      * Returns the activity file preference, i.e. the file that was last opened.
-     * The preference is read from the OS specific registry. If no such
+     * This is based on a Properties File since the Preference API is deprecated. If no such
      * preference can be found, null is returned.
+     *
      *
      * @return
      */
@@ -321,7 +341,7 @@ public class MainApp extends Application {
 
     /**
      * Sets the file path of the currently loaded file. The path is persisted in
-     * the OS specific registry.
+     * the Properties File.
      *
      * @param file the file or null to remove the path
      */
@@ -423,6 +443,10 @@ public class MainApp extends Application {
         return primaryStage;
     }
 
+    /**
+     * Updates the OverViewController - its list - when changes happen in the detail view
+     * like Tags getting added, edited or removed
+     */
     public void updateOverViewController() {
         tagList.clear();
         tagList.addAll(

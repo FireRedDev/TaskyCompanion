@@ -8,6 +8,10 @@ import java.time.LocalDate;
  * String representation of the date such as '2012-12-03'.
  */
 public class LocalDateAdapter extends XmlAdapter<String, LocalDate> {
+
+    /**
+     *
+     */
     public LocalDateAdapter() {
     }
 

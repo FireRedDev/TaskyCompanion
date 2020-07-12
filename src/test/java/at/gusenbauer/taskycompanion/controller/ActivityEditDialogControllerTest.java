@@ -1,6 +1,8 @@
 package at.gusenbauer.taskycompanion.controller;
 
+
 import org.junit.jupiter.api.Test;
+
 
 class ActivityEditDialogControllerTest {
 
@@ -11,5 +13,6 @@ class ActivityEditDialogControllerTest {
 
     @Test
     void startTimeTracking() {
+
     }
 }

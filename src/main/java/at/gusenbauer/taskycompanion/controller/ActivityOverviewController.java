@@ -6,7 +6,6 @@ import at.gusenbauer.taskycompanion.util.DateUtil;
 import javafx.animation.FadeTransition;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -15,19 +14,49 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+/**
+ * Displays a List of Activites and provides filtering and sorting capabilities
+ *
+ * @author chris
+ */
 public class ActivityOverviewController {
+
+    /**
+     * Activity Table
+     */
     @FXML
     public TableView<Activity> activityTable;
+
+    /**
+     * Input Text
+     */
     @FXML
     public TextField filterField;
+
+    /**
+     *
+     */
     @FXML
     public FlowPane filterArea;
+
+    /**
+     *
+     */
     @FXML
     public DatePicker vonDate;
+
+    /**
+     *
+     */
     @FXML
     public DatePicker bisDate;
+
+    /**
+     * Tag Dropdown
+     */
     @FXML
     public ComboBox tagSelector;
     @FXML
@@ -54,8 +83,8 @@ public class ActivityOverviewController {
     private MainApp mainApp;
 
     /**
-     * The constructor.
-     * The constructor is called before the initialize() method.
+     * The constructor. The constructor is called before the initialize()
+     * method.
      */
     public ActivityOverviewController() {
     }
@@ -74,7 +103,7 @@ public class ActivityOverviewController {
         // Listen for selection changes and show the activity details when changed.
         activityTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showActivityDetails(newValue));
-
+        //Provide the correct styling as specified in the activity.
         activityTable.setRowFactory(t -> new TableRow<>() {
 
             @Override
@@ -84,8 +113,8 @@ public class ActivityOverviewController {
                 if (empty) {
                     setStyle("");
                 } else {
-                    styleProperty().bind(Bindings.createStringBinding(() ->
-                                    "-fx-background: " + formatColorString(activity.getColor()),
+                    styleProperty().bind(Bindings.createStringBinding(()
+                                    -> "-fx-background: " + formatColorString(activity.getColor()),
                             activity.colorProperty()
                     ));
                 }
@@ -100,74 +129,65 @@ public class ActivityOverviewController {
         });
     }
 
+    /**
+     * Sets Up Drag and Drop
+     */
     private void setUpDragAndDrop() {
-        activityTable.setOnDragDetected(new EventHandler<MouseEvent>() { //drag
-            @Override
-            public void handle(final MouseEvent event) {
-                // drag was detected, start drag-and-drop gesture
-                final Activity selected = activityTable.getSelectionModel().getSelectedItem();
-                if (selected != null) {
-
-                    final Dragboard db = activityTable.startDragAndDrop(TransferMode.ANY);
-                    final ClipboardContent content = new ClipboardContent();
-                    content.putString(selected.getDescription());
-                    db.setContent(content);
-                    event.consume();
-                }
-                deleteArea.setStyle("-fx-background-color:#34c3eb;");
-                final FadeTransition fadeIn = new FadeTransition(
-                        Duration.millis(500)
-                );
-                fadeIn.setNode(deleteArea);
-                fadeIn.setFromValue(0.0);
-                fadeIn.setToValue(1.0);
-                fadeIn.setCycleCount(1);
-                fadeIn.setAutoReverse(false);
-                fadeIn.playFromStart();
-                deleteArea.setVisible(true);
-            }
-        });
-        deleteArea.setOnDragOver(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(final DragEvent event) {
-                deleteArea.setVisible(true);
-                // data is dragged over the target
-
-                if (event.getDragboard().hasString()) {
-                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                }
-                event.consume();
-            }
-        });
-        deleteArea.setOnDragDropped(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(final DragEvent event) {
-
-                boolean success = false;
-                if (event.getDragboard().hasString()) {
-
+        //Start animation and show text to show DragandDrop
+        activityTable.setOnDragDetected((final MouseEvent event) -> {
+                    // drag was detected, start drag-and-drop gesture
                     final Activity selected = activityTable.getSelectionModel().getSelectedItem();
                     if (selected != null) {
 
-                        mainApp.activityData.remove(selected);
-
-
+                        final Dragboard db = activityTable.startDragAndDrop(TransferMode.ANY);
+                        final ClipboardContent content = new ClipboardContent();
+                        content.putString(selected.getDescription());
+                        db.setContent(content);
+                        event.consume();
                     }
-                    success = true;
-                }
-                event.setDropCompleted(success);
-                deleteArea.setVisible(false);
-                event.consume();
+                    deleteArea.setStyle("-fx-background-color:#34c3eb;");
+                    final FadeTransition fadeIn = new FadeTransition(
+                            Duration.millis(500)
+                    );
+                    fadeIn.setNode(deleteArea);
+                    fadeIn.setFromValue(0.0);
+                    fadeIn.setToValue(1.0);
+                    fadeIn.setCycleCount(1);
+                    fadeIn.setAutoReverse(false);
+                    fadeIn.playFromStart();
+                    deleteArea.setVisible(true);
+                } //drag
+        );
+        deleteArea.setOnDragOver((final DragEvent event) -> {
+            deleteArea.setVisible(true);
+            // data is dragged over the target
+
+            if (event.getDragboard().hasString()) {
+                event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
             }
+            event.consume();
         });
-        activityTable.setOnDragExited(new EventHandler<DragEvent>() {
-            public void handle(final DragEvent event) {
-                /* mouse moved away, remove the graphical cues */
+        deleteArea.setOnDragDropped((final DragEvent event) -> {
+            boolean success = false;
+            if (event.getDragboard().hasString()) {
 
+                final Activity selected = activityTable.getSelectionModel().getSelectedItem();
+                if (selected != null) {
 
-                event.consume();
-                deleteArea.setVisible(false);
+                    mainApp.activityData.remove(selected);
+
+                }
+                success = true;
             }
+            event.setDropCompleted(success);
+            deleteArea.setVisible(false);
+            event.consume();
+        });
+        activityTable.setOnDragExited((final DragEvent event) -> {
+            /* mouse moved away, remove the graphical cues */
+
+            event.consume();
+            deleteArea.setVisible(false);
         });
     }
 
@@ -185,8 +205,8 @@ public class ActivityOverviewController {
     }
 
     /**
-     * Fills all text fields to show details about the activity.
-     * If the specified activity is null, all text fields are cleared.
+     * Fills all text fields to show details about the activity. If the
+     * specified activity is null, all text fields are cleared.
      *
      * @param activity the activity or null
      */
@@ -196,7 +216,7 @@ public class ActivityOverviewController {
             descriptionLabel.setText(activity.getDescription());
             customerLabel.setText(activity.getCustomer());
             projectLabel.setText(activity.getProject());
-            durationLabel.setText(Integer.toString(activity.getDuration()));
+            durationLabel.setText(prepareDurationString(activity));
             cityLabel.setText(activity.getCity());
             dueDateLabel.setText(DateUtil.format(activity.getDueDate()));
             tagLabel.setText(activity.getTags().stream().collect(Collectors.joining(",")));
@@ -210,6 +230,29 @@ public class ActivityOverviewController {
             dueDateLabel.setText("");
             tagLabel.setText("");
         }
+    }
+
+    private String prepareDurationString(final Activity activity) {
+        int seconds = activity.getDuration();
+        int day = (int) TimeUnit.SECONDS.toDays(seconds);
+        long hours = TimeUnit.SECONDS.toHours(seconds) - (day * 24);
+        long minute = TimeUnit.SECONDS.toMinutes(seconds) - (TimeUnit.SECONDS.toHours(seconds) * 60);
+        long second = TimeUnit.SECONDS.toSeconds(seconds) - (TimeUnit.SECONDS.toMinutes(seconds) * 60);
+        //Creates Time String depending on the length of the duration
+        StringBuilder timeText = new StringBuilder();
+        if (day != 0) {
+            timeText.append("Days: ").append(day).append(" ");
+        }
+        if (hours != 0) {
+            timeText.append("Hours: ").append(hours).append(" ");
+        }
+        if (minute != 0) {
+            timeText.append("Min: ").append(minute).append(" ");
+        }
+        if (second != 0) {
+            timeText.append("Sec: ").append(second);
+        }
+        return timeText.toString();
     }
 
     /**
@@ -273,6 +316,9 @@ public class ActivityOverviewController {
         }
     }
 
+    /**
+     * @param actionEvent
+     */
     public void resetAdvanced(final ActionEvent actionEvent) {
         vonDate.setValue(null);
         bisDate.setValue(null);

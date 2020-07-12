@@ -12,6 +12,10 @@ import java.io.File;
  * elements can be placed.
  */
 public class RootLayoutController {
+
+    /**
+     *
+     */
     public RootLayoutController() {
     }
 

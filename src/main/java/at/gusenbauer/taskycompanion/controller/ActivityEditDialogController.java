@@ -21,6 +21,10 @@ import java.util.stream.Collectors;
  * Dialog to edit details of a activity.
  */
 public class ActivityEditDialogController {
+
+    /**
+     *
+     */
     public ActivityEditDialogController() {
     }
 
@@ -57,6 +61,9 @@ public class ActivityEditDialogController {
     private void initialize() {
     }
 
+    /**
+     * @param mainApp
+     */
     public void setMainApp(final MainApp mainApp) {
         this.mainApp = mainApp;
     }
@@ -70,7 +77,7 @@ public class ActivityEditDialogController {
         this.dialogStage = dialogStage;
 
         // Set the dialog icon.
-        this.dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+        this.dialogStage.getIcons().add(new Image(this.getClass().getResourceAsStream("32x32.png")));
     }
 
     /**
@@ -89,6 +96,7 @@ public class ActivityEditDialogController {
         dueDateField.setValue(activity.getDueDate());
         dueDateField.setPromptText("dd.mm.yyyy");
         colorPic.setValue(activity.getColor());
+        //Convert List into comma seperated List
         tagList.setText(activity.getTags().stream().collect(Collectors.joining(",")));
     }
 
@@ -115,7 +123,8 @@ public class ActivityEditDialogController {
             activity.setDueDate(dueDateField.getValue());
             activity.setColor(colorPic.getValue());
             activity.setTags(FXCollections.observableList(
-                    new ArrayList<String>(
+                    //Convert comma seperated String to List
+                    new ArrayList<>(
                             Arrays.asList(
                                     tagList.getText().replaceAll("\\s+", "").split(",")))));
             okClicked = true;
@@ -138,7 +147,7 @@ public class ActivityEditDialogController {
      * @return true if the input is valid
      */
     private boolean isInputValid() {
-        StringBuffer errorMessage = new StringBuffer("");
+        StringBuilder errorMessage = new StringBuilder("");
 
         if (descriptionField.getText() == null || descriptionField.getText().length() == 0) {
             errorMessage.append("No valid Description!\n");
@@ -185,6 +194,10 @@ public class ActivityEditDialogController {
         }
     }
 
+    /**
+     * Starts logging the Time for a specific Activity
+     * If the Method gets called again, it stops tracking and saves the Duration
+     */
     @FXML
     public void startTimeTracking() {
         if (timerRunning) {

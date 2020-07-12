@@ -22,6 +22,11 @@
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
+.date-picker > .text-field {
+    -fx-color: yellow;
+    -fx-text-inner-color:yellow;
+    -fx-text-fill: yellow;
+}
 
 .table-view {
     -fx-base: #006699;

@@ -71,7 +71,7 @@
                                 <Label text="Participants" GridPane.rowIndex="1"/>
                                 <Label text="Project" GridPane.rowIndex="2"/>
                                 <Label text="Location" GridPane.rowIndex="3"/>
-                                <Label text="Duration(sec)" GridPane.rowIndex="4"/>
+                                <Label text="Duration" GridPane.rowIndex="4"/>
                                 <Label text="Due Date" GridPane.rowIndex="5"/>
                                 <Label text="Tags" GridPane.rowIndex="6"/>
                                 <Label fx:id="descriptionLabel" styleClass="label-bright" text="Label"

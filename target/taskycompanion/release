@@ -1,0 +1,2 @@
+JAVA_VERSION="11.0.6"
+MODULES="java.base java.datatransfer java.xml java.prefs java.desktop java.logging jakarta.activation java.xml.bind javafx.base jdk.unsupported javafx.graphics javafx.controls java.scripting javafx.fxml at.gusenbauer.taskycompanion"

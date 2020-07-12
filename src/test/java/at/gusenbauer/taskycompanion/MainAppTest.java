@@ -2,9 +2,12 @@ package at.gusenbauer.taskycompanion;
 
 
 import org.junit.jupiter.api.Test;
+import org.testfx.framework.junit5.ApplicationTest;
 
-public class MainAppTest /** extends ApplicationTest **/
-{
+/**
+ * @author chris
+ */
+public class MainAppTest extends ApplicationTest {
 
 
     @Test
