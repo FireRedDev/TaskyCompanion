@@ -39,3 +39,7 @@ target/image/bin/java -m at.gusenbauer.taskycompanion/at.gusenbauer.taskycompani
 In der aktuellsten Projektversion wird auch ein .bat Script generiert, welches automatisch die App ausführt. 
 Dieses generierte Image ist Plattformabhängig und muss je OS neu generiert werden, im Github Repository inkludiert sind die Windows Dateien.
 
+## Ressourcen
+Als Hilfestellung wurden sehr viele verschiedene Websiten und Guides benützt, z.B.:
+Stackoverflow, JavaFX CSS Reference Documentation, Marco Jacobs JavaFX Blog Guides und ein Base Project, Baldung, Oracle Documentation, Github Wikis, draeger-it Blogs, IntelliJ Doku, diverse Subreddits wie /r/java /r/javahelp und /r/programming
+
