@@ -1,4 +1,4 @@
-# Software PR Projekt Gusenbauer TaskyCompanion
+# JavaFX Daily-Organizer TaskyCompanion
 
 
 ## Beschreibung
