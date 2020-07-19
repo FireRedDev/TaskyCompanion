@@ -13,7 +13,7 @@ Controller – beinhaltet die Steuernde Logik, die Controller
 Im Ressources Ordner finden sich die Views (fxml) und die App-Settings als Property-File, wie auch Styling-Related Content.
 
 
-![Screenshot](screenshot.png)
+![Screenshot](https://github.com/Jiraci/TaskyCompanion/blob/master/screenshot.PNG)
 
 
 ## Installationsanleitung
