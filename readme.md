@@ -13,6 +13,9 @@ Controller – beinhaltet die Steuernde Logik, die Controller
 Im Ressources Ordner finden sich die Views (fxml) und die App-Settings als Property-File, wie auch Styling-Related Content.
 
 
+![Screenshot](screenshot.png)
+
+
 ## Installationsanleitung
 
 Benötigt: Maven, Java, je nach Ausführmethode OpenJFX oder ein JDK mit OpenJFX inkludiert, z.B. Liberica JDK
