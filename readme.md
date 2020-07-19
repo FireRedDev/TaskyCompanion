@@ -15,6 +15,7 @@ Im Ressources Ordner finden sich die Views (fxml) und die App-Settings als Prope
 
 ![Screenshot](https://github.com/Jiraci/TaskyCompanion/blob/master/screenshot.PNG)
 
+Die App ist ein Soloprojekt von mir, das ich urprünglich innerhalb der Uni als Gruppenarbeit gemacht hätte, aber dann wie es der Zufall so wollte alleine gemacht hab.
 
 ## Installationsanleitung
 
