@@ -4,7 +4,7 @@
 ## Beschreibung
 
 In diesem Projekt wurde ein Aufgabenplaner als Desktopapp implementiert. 
-Mit diesem Programm („TaskyCompanion“) kann man Aufgaben verwalten, via Drag & Drop abhaken, Color-Coden, kategorisieren, filtern, Zeittracking betreiben, diese Daten sichern und importieren und Statistiken ansehen.
+Mit diesem Programm („TaskyCompanion“) kann man Aufgaben verwalten, via Drag & Drop abhaken, Color-Coden, kategorisieren via Tags und Projekten, filtern, Zeittracking betreiben, diese Daten sichern und importieren und Statistiken ansehen.
 
 Das Projekt baut auf dem JavaFX Maven Archetype aus. Benutzte Technologien sind hauptsächlich Java und JavaFX. Das Projekt ist in die MainApp Klasse, eine Launcher Klasse und drei Packages gegliedert: 
 Dataclasses – beinhaltet Datenobjekte die repräsentiert werden
